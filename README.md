@@ -24,6 +24,7 @@ $ npm install
 ```bash
 # development
 $ npm run start
+```
 
 ## Apis Documentation
 http://localhost:3000/api
