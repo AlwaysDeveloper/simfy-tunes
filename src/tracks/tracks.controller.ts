@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/comm
 import { TracksService } from './tracks.service';
 import { Track } from './interfaces/track.interface';
 import { CreateTrackDto } from './dtos/createTrack.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCookieAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @ApiTags('Tracks')
@@ -10,6 +10,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 export class TracksController {
   constructor(private trackService: TracksService) {}
 
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @Post()
   async create(@Body() createTrackDto: CreateTrackDto): Promise<Track> {
@@ -21,6 +22,8 @@ export class TracksController {
     return this.trackService.findAll();
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @Put(':id')
   async edit(
     @Param('id') id: number,

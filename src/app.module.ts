@@ -10,6 +10,8 @@ import { TracklistService } from './tracklist/tracklist.service';
 import { TrackListModule } from './tracklist/tracklist.module';
 import { PlaylistModel } from './playlist/playlist.model';
 import { TrackListModel } from './tracklist/tracklist.model';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,7 +27,8 @@ import { TrackListModel } from './tracklist/tracklist.model';
     }),
     TrackModule,
     PlaylistModule,
-    TrackListModule
+    TrackListModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

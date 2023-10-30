@@ -7,6 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Simfy Tunes')
+    .addBearerAuth()
     .setDescription('The API description for Simfy Tunes')
     .setVersion('1.0')
     .addTag('Tracks')

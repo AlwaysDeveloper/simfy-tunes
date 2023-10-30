@@ -7,18 +7,22 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiParam, ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam, ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PlaylistService } from './playlist.service';
 import { CreatePlaylistDto } from './dtos/createPlaylist.dto.';
 import { Playlist } from './interfaces/playlist.interface';
 import { EditPlailistDto } from './dtos/editPlaylist.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @ApiTags('Playlist')
 @Controller('playlist')
 export class PlaylistController {
   constructor(private playlistService: PlaylistService) {}
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @Post()
   async create(@Body() createPlaylistDto: CreatePlaylistDto) {
     return this.playlistService.create(createPlaylistDto);
@@ -47,6 +51,8 @@ export class PlaylistController {
     return this.playlistService.findById(id);
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @Put(':id')
   async edit(
     @Param('id') id: number,
@@ -55,6 +61,8 @@ export class PlaylistController {
     return this.playlistService.edit(id, editPlaylistDto);
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: number) {
     this.playlistService.remove(id);
