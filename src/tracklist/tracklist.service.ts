@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { TrackListModel } from './tracklist.model';
 import { PlaylistService } from 'src/playlist/playlist.service';
@@ -16,7 +16,7 @@ export class TracklistService {
     private playlistService: PlaylistService,
     private trackService: TracksService,
     private sequelize: Sequelize,
-  ) {}
+  ) { }
 
   async create(playlistId: number, trackId: number) {
     try {
@@ -39,7 +39,9 @@ export class TracklistService {
           transactionHost,
         );
       });
-    } catch (error) {}
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 
   async remove(playlistId: number, trackId: number) {
@@ -61,6 +63,8 @@ export class TracklistService {
           { where: { playlistId, trackId } },
         );
       });
-    } catch (error) {}
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 }

@@ -25,9 +25,6 @@ export class PlaylistModel extends Model implements Playlist {
   @Column({ allowNull: false, defaultValue: true })
   isActive: boolean;
 
-  @Column({ allowNull: false, field: 'playlistArtwork' })
-  playlistArtwork: string;
-
   @HasMany(() => TrackListModel)
   tracklist: Track[];
 }

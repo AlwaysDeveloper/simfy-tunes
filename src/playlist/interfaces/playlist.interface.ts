@@ -5,6 +5,5 @@ export interface Playlist {
   creator: number;
   playtime: number;
   isActive: boolean;
-  playlistArtwork: string;
   tracklist: Track[];
 }
