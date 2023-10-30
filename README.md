@@ -1,3 +1,8 @@
+## Description
+Simpfy-tunes is microservice based on NestJs API framework running in node js. 
+It is using Postgresql as database with Sequelize as ORM. 
+For authentication JWT has been used.
+
 ## Setup DB using Docker compse
 ```bash
 $ docker-compose up
@@ -19,13 +24,6 @@ $ npm install
 ```bash
 # development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
 
 ## Apis Documentation
 http://localhost:3000/api
