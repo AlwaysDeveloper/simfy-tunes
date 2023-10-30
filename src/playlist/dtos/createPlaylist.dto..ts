@@ -3,6 +3,9 @@ import { Playlist } from '../interfaces/playlist.interface';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreatePlaylistDto implements Playlist {
+  @ApiProperty()
+  playlistArtwork: string;
+  @ApiProperty()
   isActive: boolean;
   @ApiProperty()
   name: string;
