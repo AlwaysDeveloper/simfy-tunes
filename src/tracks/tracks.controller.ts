@@ -8,7 +8,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @ApiTags('Tracks')
 @Controller('tracks')
 export class TracksController {
-  constructor(private trackService: TracksService) {}
+  constructor(private trackService: TracksService) { }
 
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
@@ -20,6 +20,11 @@ export class TracksController {
   @Get()
   async findAll(): Promise<Track[]> {
     return this.trackService.findAll();
+  }
+
+  @Get(':id')
+  async find(@Param('id') id: number): Promise<Track> {
+    return this.trackService.findById(id);
   }
 
   @ApiBearerAuth()
